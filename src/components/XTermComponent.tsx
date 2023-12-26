@@ -5,18 +5,6 @@ import { FitAddon } from "xterm-addon-fit";
 import { WebLinksAddon } from "xterm-addon-web-links";
 import "xterm/css/xterm.css";
 
-interface VoiceSettings {
-  similarity_boost: number;
-  stability: number;
-  use_speaker_boost: boolean;
-}
-
-interface RequestData {
-  model_id: string;
-  text: string;
-  voice_settings: VoiceSettings;
-}
-
 
 interface XTermComponentProps {}
 
@@ -25,24 +13,6 @@ const XTermComponent: React.FC<XTermComponentProps> = ({}) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [openAiInProgress, setOpenAiInProgress] = useState(false);
  
-  const loadAudio = async (options: any) => {
-    try {
-      const response = await fetch(
-        "https://api.elevenlabs.io/v1/text-to-speech/ePQGCqByrc8Krl24cTQf",
-        options
-      );
-      const audioBlob = await response.blob();
-      const audioUrl = URL.createObjectURL(audioBlob);
-      // TypeScript now knows audioRef.current is an HTMLAudioElement
-      if (audioRef.current) {
-        audioRef.current.src = audioUrl;
-        audioRef.current.play();
-      }
-    } catch (error) {
-      console.error("Error loading audio:", error);
-    }
-  };
-
   useEffect(()=> {
 
   }, [openAiInProgress]);
@@ -115,26 +85,7 @@ const XTermComponent: React.FC<XTermComponentProps> = ({}) => {
       const answer = jsonRes.message;
       terminal.writeln(answer);
       console.log("Assistant responds:", answer);
-      // const requestData: RequestData = {
-      //   model_id: "eleven_turbo_v2",
-      //   text: answer,
-      //   voice_settings: {
-      //     similarity_boost: 0.5,
-      //     stability: 0.5,
-      //     use_speaker_boost: true,
-      //   },
-      // };
-      // const jsonBody = JSON.stringify(requestData);
-      // const options = {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     "xi-api-key": "2ff5de2f5ba4ba7b1f9b51d1259a67a0",
-      //     Accept: "audio/mpeg",
-      //   },
-      //   body: jsonBody,
-      // };
-      // loadAudio(options);
+
     }
 
     if (terminalRef.current) {
@@ -184,3 +135,55 @@ const XTermComponent: React.FC<XTermComponentProps> = ({}) => {
 };
 
 export default XTermComponent;
+
+// interface VoiceSettings {
+//   similarity_boost: number;
+//   stability: number;
+//   use_speaker_boost: boolean;
+// }
+
+// interface RequestData {
+//   model_id: string;
+//   text: string;
+//   voice_settings: VoiceSettings;
+// }
+
+
+// const loadAudio = async (options: any) => {
+//   try {
+//     const response = await fetch(
+//       "https://api.elevenlabs.io/v1/text-to-speech/ePQGCqByrc8Krl24cTQf",
+//       options
+//     );
+//     const audioBlob = await response.blob();
+//     const audioUrl = URL.createObjectURL(audioBlob);
+//     // TypeScript now knows audioRef.current is an HTMLAudioElement
+//     if (audioRef.current) {
+//       audioRef.current.src = audioUrl;
+//       audioRef.current.play();
+//     }
+//   } catch (error) {
+//     console.error("Error loading audio:", error);
+//   }
+// };
+
+      // const requestData: RequestData = {
+      //   model_id: "eleven_turbo_v2",
+      //   text: answer,
+      //   voice_settings: {
+      //     similarity_boost: 0.5,
+      //     stability: 0.5,
+      //     use_speaker_boost: true,
+      //   },
+      // };
+      // const jsonBody = JSON.stringify(requestData);
+      // const options = {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     "xi-api-key": "2ff5de2f5ba4ba7b1f9b51d1259a67a0",
+      //     Accept: "audio/mpeg",
+      //   },
+      //   body: jsonBody,
+      // };
+      // loadAudio(options);
