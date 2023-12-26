@@ -1,0 +1,93 @@
+{
+  "options": {
+    "method": "get",
+    "path": "/threads/thread_OWxI2bG2onWwLplP9grG92qd/messages",
+    "query": {},
+    "headers": { "OpenAI-Beta": "assistants=v1" }
+  },
+  "response": { "size": 0, "timeout": 0 },
+  "body": {
+    "object": "list",
+    "data": [
+      {
+        "id": "msg_JQnRTYnDva3ysbVbx8byP22I",
+        "object": "thread.message",
+        "created_at": 1703613093,
+        "thread_id": "thread_OWxI2bG2onWwLplP9grG92qd",
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": {
+              "value": "Alexander Knips currently lives in Redwood City, USA【13†source】.",
+              "annotations": []
+            }
+          }
+        ],
+        "file_ids": [],
+        "assistant_id": "asst_HPuMBr1iPksfctoFk0jFQF1z",
+        "run_id": "run_p1AzNxbGrajuRtCtSaaowFsG",
+        "metadata": {}
+      },
+      {
+        "id": "msg_5N3qLSGwFBen2MH4DzjZFRx7",
+        "object": "thread.message",
+        "created_at": 1703613088,
+        "thread_id": "thread_OWxI2bG2onWwLplP9grG92qd",
+        "role": "user",
+        "content": [
+          {
+            "type": "text",
+            "text": { "value": "Where does Alex live?", "annotations": [] }
+          }
+        ],
+        "file_ids": [],
+        "assistant_id": null,
+        "run_id": null,
+        "metadata": {}
+      }
+    ],
+    "first_id": "msg_JQnRTYnDva3ysbVbx8byP22I",
+    "last_id": "msg_5N3qLSGwFBen2MH4DzjZFRx7",
+    "has_more": false
+  },
+  "data": [
+    {
+      "id": "msg_JQnRTYnDva3ysbVbx8byP22I",
+      "object": "thread.message",
+      "created_at": 1703613093,
+      "thread_id": "thread_OWxI2bG2onWwLplP9grG92qd",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": {
+            "value": "Alexander Knips currently lives in Redwood City, USA【13†source】.",
+            "annotations": []
+          }
+        }
+      ],
+      "file_ids": [],
+      "assistant_id": "asst_HPuMBr1iPksfctoFk0jFQF1z",
+      "run_id": "run_p1AzNxbGrajuRtCtSaaowFsG",
+      "metadata": {}
+    },
+    {
+      "id": "msg_5N3qLSGwFBen2MH4DzjZFRx7",
+      "object": "thread.message",
+      "created_at": 1703613088,
+      "thread_id": "thread_OWxI2bG2onWwLplP9grG92qd",
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": { "value": "Where does Alex live?", "annotations": [] }
+        }
+      ],
+      "file_ids": [],
+      "assistant_id": null,
+      "run_id": null,
+      "metadata": {}
+    }
+  ]
+}

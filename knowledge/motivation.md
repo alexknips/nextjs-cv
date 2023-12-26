@@ -1,0 +1,7 @@
+ With 16 years of experience as a software engineer and a scientific background, I am confident in my ability to contribute effectively to your team and accelerate the company toward its ultimate goal of achieving artificial general intelligence.
+
+In my current role as Senior Staff Software Engineer at Karius I successfully transitioned a significant portion of the engineering team from using their favorite flavor-of-the-month tech stack to a software stack that is productive, pragmatic, and maintainable. Domain Driven Design, Clean Coding principles, Event Driven software design, reactive programming, and functional programming have all played a significant role in this transition. I was also instrumental in improving the usability of our Kubernetes story for the engineers.
+
+My experience in High-Performance Computing with the help of GPUs during my PhD thesis, the hands-on usage of machine learning and deep neural networks on multiple occasions, together with extensive experience as a back-end software engineer with knowledge of DevOps, testing, and architecture, have equipped me with the expertise needed to excel in a dynamic and challenging environment.
+
+Thank you for considering my application. I am excited about the prospect of joining OpenAI and contributing to your team's success.
