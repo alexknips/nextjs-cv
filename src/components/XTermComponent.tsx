@@ -16,9 +16,6 @@ const XTermComponent: React.FC<XTermComponentProps> = ({
 }) => {
   const terminalRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
-  const [openAiInProgress, setOpenAiInProgress] = useState(false);
-
-  useEffect(() => {}, [openAiInProgress]);
 
   const terminal = new Terminal({
     cursorBlink: true,
@@ -77,17 +74,17 @@ const XTermComponent: React.FC<XTermComponentProps> = ({
       console.log("User entered:", input);
       switch (input.toLowerCase()) {
         case "hi":
-          terminal.writeln("⚙️ \x1b[3mWelcome to my console\x1b[23m");
+          terminal.writeln("\x1b[33m⚙️ \x1b[3mWelcome to my console\x1b[23m\x1b[0m");
           break;
         case "man":
-          terminal.writeln("⚙️ \x1b[3mWelcome to my console\x1b[23m");
+          terminal.writeln("\x1b[33m⚙️ \x1b[3mWelcome to my console\x1b[23m\x1b[0m");
           break;
         case "help":
-          terminal.writeln("⚙️ \x1b[3mWelcome to my console\x1b[23m");
+          terminal.writeln("\x1b[33m⚙️ \x1b[3mWelcome to my console\x1b[23m\x1b[0m");
           break;
         case "pdf":
           terminal.writeln(
-            "⚙️ \x1b[3m Download the resumee by clicking on the following link:\x1b[23m"
+            "\x1b[33m⚙️ \x1b[3m Download the resumee by clicking on the following link:\x1b[23m\x1b[0m"
           );
           break;
         case "welcome":
@@ -104,7 +101,7 @@ const XTermComponent: React.FC<XTermComponentProps> = ({
           break;
         case "download":
           terminal.writeln(
-            "⚙️ \x1b[3m Download the resumee by clicking on the following link:\x1b[23m"
+            "\x1b[33m⚙️ \x1b[3m Download the resumee by clicking on the following link:\x1b[23m\x1b[0m⚙️"
           );
           break;
         default:
@@ -115,7 +112,7 @@ const XTermComponent: React.FC<XTermComponentProps> = ({
 
     function welcomeMessage(terminal: Terminal) {
       terminal.writeln(
-        "⚙️ \x1b[3mThis is a fake terminal. Please interact with it as if it was real terminal but also a chatbot. Use the Esc key to hide elements. Use man or help to get more help.\x1b[23m"
+        "\x1b[33m⚙️ \x1b[3mThis is a fake terminal. Please interact with it as if it was real terminal but also a chatbot. Use the Esc key to hide elements. Use man or help to get more help.\x1b[23m\x1b[0m"
       );
     }
 
@@ -132,8 +129,7 @@ const XTermComponent: React.FC<XTermComponentProps> = ({
       const jsonRes = await res.json();
       console.log(JSON.stringify(jsonRes));
       const answer = jsonRes.message;
-      terminal.writeln("\r\n🤖 \x1b[3m" + answer + "\x1b[23m");
-      terminal.write("$ ");
+      terminal.writeln("\r\n\x1b[32m🤖 \x1b[3m" + answer + "\x1b[23m\x1b[0m");
       console.log("Assistant responds:", answer);
     }
 

@@ -94,7 +94,7 @@ const TerminalPage: React.FC = () => {
 
           {isXTermLoaded && (
             <div
-              className={`transition-opacity duration-500 ${
+              className={`h-full w-full transition-opacity duration-500 ${
                 showTimeline || inProgress ? "opacity-50" : "opacity-100"
               }`}
             >
