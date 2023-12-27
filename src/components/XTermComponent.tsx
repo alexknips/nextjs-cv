@@ -5,17 +5,20 @@ import { FitAddon } from "xterm-addon-fit";
 import { WebLinksAddon } from "xterm-addon-web-links";
 import "xterm/css/xterm.css";
 
+interface XTermComponentProps {
+  onCustomFunction: (show: boolean | undefined) => void;
+  onProgressChanged: (inProgress: boolean) => void;
+}
 
-interface XTermComponentProps {}
-
-const XTermComponent: React.FC<XTermComponentProps> = ({}) => {
+const XTermComponent: React.FC<XTermComponentProps> = ({
+  onCustomFunction,
+  onProgressChanged,
+}) => {
   const terminalRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
   const [openAiInProgress, setOpenAiInProgress] = useState(false);
- 
-  useEffect(()=> {
 
-  }, [openAiInProgress]);
+  useEffect(() => {}, [openAiInProgress]);
 
   const terminal = new Terminal({
     cursorBlink: true,
@@ -46,12 +49,13 @@ const XTermComponent: React.FC<XTermComponentProps> = ({}) => {
 
   useEffect(() => {
     let currentLine = "";
-    let inProgress = false;
+
     function handleInput(data: string | Uint8Array) {
       // Check for Enter key
       if (data === "\r") {
         // Process the input when Enter is pressed
         processInput(currentLine);
+        terminal.write("$ ");
         currentLine = ""; // Reset the input buffer
       } else if (data === "\x7f" || data === "\b") {
         // Handle backspace
@@ -71,43 +75,105 @@ const XTermComponent: React.FC<XTermComponentProps> = ({}) => {
       // Process the input line (add your logic here)
       terminal.writeln("");
       console.log("User entered:", input);
+      switch (input.toLowerCase()) {
+        case "hi":
+          terminal.writeln("⚙️ \x1b[3mWelcome to my console\x1b[23m");
+          break;
+        case "man":
+          terminal.writeln("⚙️ \x1b[3mWelcome to my console\x1b[23m");
+          break;
+        case "help":
+          terminal.writeln("⚙️ \x1b[3mWelcome to my console\x1b[23m");
+          break;
+        case "pdf":
+          terminal.writeln(
+            "⚙️ \x1b[3m Download the resumee by clicking on the following link:\x1b[23m"
+          );
+          break;
+        case "welcome":
+          welcomeMessage(terminal);
+          break;
+        case "show":
+          onCustomFunction(true);
+          break;
+        case "hide":
+          onCustomFunction(false);
+          break;
+        case "exit":
+          onCustomFunction(false);
+          break;
+        case "download":
+          terminal.writeln(
+            "⚙️ \x1b[3m Download the resumee by clicking on the following link:\x1b[23m"
+          );
+          break;
+        default:
+          await communicateWithAi(input);
+          break;
+      }
+    }
+
+    function welcomeMessage(terminal: Terminal) {
+      terminal.writeln(
+        "⚙️ \x1b[3mThis is a fake terminal. Please interact with it as if it was real terminal but also a chatbot. Use the Esc key to hide elements. Use man or help to get more help.\x1b[23m"
+      );
+    }
+
+    async function communicateWithAi(input: string) {
       const data = { question: input };
       // Make a request to your API route
       const resP = fetch("/api/openai", {
         method: "POST",
         body: JSON.stringify(data),
       });
-      inProgress = true;
+      onProgressChanged(true);
       const res = await resP;
-      inProgress = false;
+      onProgressChanged(false);
       const jsonRes = await res.json();
       console.log(JSON.stringify(jsonRes));
       const answer = jsonRes.message;
-      terminal.writeln(answer);
+      terminal.writeln("\r\n🤖 \x1b[3m" + answer + "\x1b[23m");
+      terminal.write("$ ");
       console.log("Assistant responds:", answer);
-
     }
 
     if (terminalRef.current) {
-      terminal.open(terminalRef.current);
-
       const fitAddon = new FitAddon();
       terminal.loadAddon(fitAddon);
-      // Make the terminal's size and geometry fit the size of #terminal-container
-      fitAddon.fit();
+
       const webLinksAddon = new WebLinksAddon();
       terminal.loadAddon(webLinksAddon);
+
+      terminal.open(terminalRef.current);
+
+      fitAddon.fit();
+
+      let resizeTimeout: string | number | NodeJS.Timeout | undefined;
+      window.addEventListener("resize", () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          console.log("Refitting");
+          fitAddon.fit();
+        }, 100); // Adjust the timeout duration as needed
+      });
     }
 
     terminal.onData(handleInput);
+    terminal.onKey((e) => {
+      const { key, domEvent } = e;
 
-    terminal.writeln("Welcome to my personal profile.");
-    terminal.writeln(
-      "You can download a PDF version of the CV through clicking on the following link: https://www.example.com"
-    );
-    terminal.writeln(
-      "Please try using the keyboard only to navigate and interact with me."
-    );
+      // Check if Esc is pressed
+      if (domEvent.key === "Escape") {
+        onCustomFunction(false);
+      }
+
+      // Check if Ctrl+C is pressed
+      if (domEvent.ctrlKey && key === "c") {
+      }
+    });
+
+    welcomeMessage(terminal);
+    terminal.write("$ ");
 
     return () => {
       terminal.dispose();
@@ -148,7 +214,6 @@ export default XTermComponent;
 //   voice_settings: VoiceSettings;
 // }
 
-
 // const loadAudio = async (options: any) => {
 //   try {
 //     const response = await fetch(
@@ -167,23 +232,23 @@ export default XTermComponent;
 //   }
 // };
 
-      // const requestData: RequestData = {
-      //   model_id: "eleven_turbo_v2",
-      //   text: answer,
-      //   voice_settings: {
-      //     similarity_boost: 0.5,
-      //     stability: 0.5,
-      //     use_speaker_boost: true,
-      //   },
-      // };
-      // const jsonBody = JSON.stringify(requestData);
-      // const options = {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     "xi-api-key": "2ff5de2f5ba4ba7b1f9b51d1259a67a0",
-      //     Accept: "audio/mpeg",
-      //   },
-      //   body: jsonBody,
-      // };
-      // loadAudio(options);
+// const requestData: RequestData = {
+//   model_id: "eleven_turbo_v2",
+//   text: answer,
+//   voice_settings: {
+//     similarity_boost: 0.5,
+//     stability: 0.5,
+//     use_speaker_boost: true,
+//   },
+// };
+// const jsonBody = JSON.stringify(requestData);
+// const options = {
+//   method: "POST",
+//   headers: {
+//     "Content-Type": "application/json",
+//     "xi-api-key": "2ff5de2f5ba4ba7b1f9b51d1259a67a0",
+//     Accept: "audio/mpeg",
+//   },
+//   body: jsonBody,
+// };
+// loadAudio(options);
