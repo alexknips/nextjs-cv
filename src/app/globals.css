@@ -25,6 +25,7 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
 #overlay {
   position: fixed;
   top: 0;
@@ -39,3 +40,8 @@ body {
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
 }
 
+#overlay-content {
+  width: 80vw; /* 80% of the viewport width */
+  height: 100vh; /* 80% of the viewport height */
+  overflow-y: auto; /* Make content scrollable */
+}
