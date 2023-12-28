@@ -37,7 +37,7 @@ const TerminalPage: React.FC = () => {
       content:
         "Back after awaiting a Greencard, leading multiple engineers on the rewrite of the LIMS automations from Scala to Typescript. Leading another contractor to implement a micro-service for fulfillment tracking. Mentoring other engineers in the implementation of event driven architecture.",
     },
-    { date: "April 2023", title: "Visa related break. Greencard obtained in September 2023", content: "" },
+    { date: "April 2023", title: "Visa related break.", content: "Greencard obtained in September 2023." },
     {
       date: "October 2021",
       title: "Karius, Senior Staff Software engineer - Backend",
@@ -92,11 +92,9 @@ const TerminalPage: React.FC = () => {
             </div>
           )}
           {showTimeline && (
-            <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
-              <div className="w-5/6">
+            <div id="overlay">
                 <Timeline events={eventsBackwards.reverse()} />
-              </div>
-            </div>
+</div>
           )}
 
           {isXTermLoaded && (

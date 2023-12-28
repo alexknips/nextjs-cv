@@ -25,3 +25,17 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto; /* Scroll if needed */
+  z-index: 1000;
+  display: flex;
+  align-items: center; /* Center the content vertically */
+  justify-content: center; /* Center the content horizontally */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+}
+
