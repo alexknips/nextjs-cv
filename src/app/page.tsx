@@ -15,6 +15,20 @@ const TerminalPage: React.FC = () => {
 
   useEffect(() => {
     setIsXTermLoaded(true);
+
+    const handleEscape = (event: { key: string }) => {
+      if (event.key === "Escape") {
+        setshowTimeline(false);
+      }
+    };
+
+    // Add event listener
+    window.addEventListener("keydown", handleEscape);
+
+    // Remove event listener on cleanup
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+    };
   }, []);
 
   const handleCustomFunction = (show: boolean | undefined) => {
@@ -98,8 +112,8 @@ const TerminalPage: React.FC = () => {
           {showTimeline && (
             <div id="overlay">
               <div id="overlay-content">
-              <Timeline events={eventsBackwards.reverse()} />
-            </div>
+                <Timeline events={eventsBackwards.reverse()} />
+              </div>
             </div>
           )}
 

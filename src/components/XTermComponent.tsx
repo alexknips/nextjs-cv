@@ -51,9 +51,10 @@ const XTermComponent: React.FC<XTermComponentProps> = ({
       // Check for Enter key
       if (data === "\r") {
         // Process the input when Enter is pressed
-        processInput(currentLine);
-        terminal.write("$ ");
-        currentLine = ""; // Reset the input buffer
+        processInput(currentLine).then(() =>{
+          terminal.write("$ ");
+          currentLine = ""; // Reset the input buffer
+        } )
       } else if (data === "\x7f" || data === "\b") {
         // Handle backspace
         if (currentLine.length > 0) {
