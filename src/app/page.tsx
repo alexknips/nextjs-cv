@@ -35,38 +35,45 @@ const TerminalPage: React.FC = () => {
       date: "September 2023",
       title: "Karius, Inc, Senior Staff Software engineer - Technical Lead",
       content:
-        "After a brief period of being unable to work due to visa issues, Alexander got his greencard in September 2023 and was able to work again. From hereon until now he was employed at Karius, Inc. as a Senior Staff Software Engineer and was now a fully technical lead. He has been leading multiple engineers on the rewrite of the LIMS automations from Scala to Typescript. Further, leading another contractor to implement a micro-service for fulfillment tracking.",
+        "Back after awaiting a Greencard, leading multiple engineers on the rewrite of the LIMS automations from Scala to Typescript. Leading another contractor to implement a micro-service for fulfillment tracking. Mentoring other engineers in the implementation of event driven architecture.",
     },
-    { date: "April 2023", title: "Visa related break", content: "..." },
+    { date: "April 2023", title: "Visa related break. Greencard obtained in September 2023", content: "" },
     {
       date: "October 2021",
       title: "Karius, Senior Staff Software engineer - Backend",
       content:
-        "Continued development of the software platform and the overall order fulfillment (Csharp, Scala, Typescript). Architectural assessment, redesign and presentations regarding Kafka and Event-Driven-Design. Team specific introduction of using Typescript on the backend with NestJS. Engineering wide: Introduced C4 Model, Opentelemetry, Kustomize (K8s), and Kafka.",
+        "Continued development of the software platform and the overall order fulfillment (C#, Scala, Typescript). Architectural assessment, redesign and presentations regarding Kafka and Event-Driven-Design. Team specific introduction of using Typescript on the backend with NestJS. Engineering wide: Introduced C4 Model, Opentelemetry, Kustomize (K8s), GraphQL and Kafka.",
     },
     {
-      date: "date",
+      date: "August 2016",
       title: "Toptal/Contractor - Client: Karius - kariusdx.com",
-      content: "Content for event 3",
+      content:
+        "As a senior software engineer at Karius, I led the development of internal and customer-facing portals using ASP.NET Core in C#. Additionally, I contributed to the in-house LIMS system's development in Scala and collaborated on components and APIs with the Illumina LIMS system, using Scala and Python. Played a key role in planning and executing a back-end rewrite using domain-driven design principles in Scala. Introduced end-to-end testing platforms (Cypress) alongside existing unit and API tests. Operational maintenact of software in life-critical environment. DevOps usage and improvements using kustomize.",
     },
     {
-      date: "date",
+      date: "January 2016",
       title: "Freelance - Client: joe.systems",
-      content: "Content for event 4",
+      content:
+        "Development of customs-related software. API development with Python and Django REST Framework. DSL/Rule parsing with Parser Combinators such as PyParse. Development, requirement engineering, architecture and technical design.",
     },
     {
-      date: "date",
+      date: "January 2015",
       title: "Own Startup: Lagerly",
-      content: "Content for event 4",
+      content:
+        "Building and funding (EXIST) a startup around computer vision and object recognition in retail, under supervision and guidance by UnternehmerTUM. Prototypes developed using C#, Python, Cloud, OpenCV, GPUs, machine learning, and neural networks.",
     },
-    { date: "date", title: "PhD - Physics", content: "Content for event 4" },
     {
-      date: "date",
-      title: "Software engineer & Customer care - Fullstack",
-      content: "Content for event 4",
+      date: "Feburary 2012",
+      title: "PhD - Physics",
+      content:
+        "Employment as teaching assistant: Supervision of tutorials and internships",
     },
-
-    // ... more events
+    {
+      date: "September 2007",
+      title: "Software engineer & Customer care - Fullstack",
+      content:
+        "Specific responsibilities: Development of enterprise resource planning (ERP) software on Windows using .Net and SQL database, additional projects for web, cloud and mobile supporting the ERP solution. Large code-base in C# but parts of the system were also written in C++. SQL Reporting and extensive Reporting capabilities.",
+    },
   ];
 
   return (
@@ -107,15 +114,17 @@ const TerminalPage: React.FC = () => {
 
           {inProgress && (
             <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
-            
-                <div className="animate-pulse relative items-center block max-w-sm p-6 bg-white border border-gray-100 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-800 dark:hover:bg-gray-700">
-                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white opacity-100">
-                        Loading...
-                      </h5>
-                      <p className="font-normal text-gray-700 dark:text-gray-400 opacity-100">
-                        Also try the commands: <span className="font-semibold ...">timeline</span>,  <span className="font-semibold ...">education</span>, or  <span className="font-semibold ...">help</span>
-                      </p>
-                    </div>
+              <div className="animate-pulse relative items-center block max-w-sm p-6 bg-white border border-gray-100 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-800 dark:hover:bg-gray-700">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white opacity-100">
+                  Loading...
+                </h5>
+                <p className="font-normal text-gray-700 dark:text-gray-400 opacity-100">
+                  Also try the commands:{" "}
+                  <span className="font-semibold ...">timeline</span>,{" "}
+                  <span className="font-semibold ...">education</span>, or{" "}
+                  <span className="font-semibold ...">help</span>
+                </p>
+              </div>
             </div>
           )}
         </div>

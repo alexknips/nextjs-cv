@@ -1,6 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
-import { time } from "console";
+import { motion, useViewportScroll, useTransform } from 'framer-motion';
 
 interface TimelineEventProps {
   date: string;
@@ -39,7 +38,7 @@ const TimelineEvent: React.FC<TimelineEventProps> = ({
             {date}
           </time>
         </div>
-        <div className="text-slate-900">{content}</div>
+        <div className="text-slate-900 text-sm">{content}</div>
       </div>
     </motion.div>
   );
@@ -56,17 +55,19 @@ interface TimelineProps {
 }
 
 const Timeline: React.FC<TimelineProps> = ({ events }) => {
+  const { scrollYProgress } = useScroll();
   return (
-    <div
-      style={{
-        zIndex: 100,
-      }}
-      className="overflow-auto space-y-2 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent"
-    >
-      {events.map((event, index) => (
-        <TimelineEvent key={index} index={index} {...event} />
-      ))}
-    </div>
+     
+      <div
+        style={{
+          zIndex: 100,
+        }}
+        className="overflow-auto relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent"
+      >
+        {events.map((event, index) => (
+          <TimelineEvent key={index} index={index} {...event} />
+        ))}
+      </div>
   );
 };
 
