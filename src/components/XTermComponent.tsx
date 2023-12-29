@@ -1,21 +1,20 @@
-import { OpenAiRequestData } from "@/app/api/openai/route";
-import React, { useEffect, useRef, useState } from "react";
+import { Show } from "@/app/models";
+import React, { useEffect, useRef } from "react";
 import { Terminal } from "xterm";
 import { FitAddon } from "xterm-addon-fit";
 import { WebLinksAddon } from "xterm-addon-web-links";
 import "xterm/css/xterm.css";
 
 interface XTermComponentProps {
-  onCustomFunction: (show: boolean | undefined) => void;
+  showOrHideVisuals: (show: Show, visible: boolean) => void;
   onProgressChanged: (inProgress: boolean) => void;
 }
 
 const XTermComponent: React.FC<XTermComponentProps> = ({
-  onCustomFunction,
+  showOrHideVisuals: onCustomFunction,
   onProgressChanged,
 }) => {
   const terminalRef = useRef<HTMLDivElement>(null);
-  const audioRef = useRef<HTMLAudioElement>(null);
 
   const terminal = new Terminal({
     cursorBlink: true,
@@ -49,12 +48,17 @@ const XTermComponent: React.FC<XTermComponentProps> = ({
 
     function handleInput(data: string | Uint8Array) {
       // Check for Enter key
-      if (data === "\r") {
+
+      if (data === "\x1b") {
+        console.log("Escape key pressed");
+        onCustomFunction(Show.All, false);
+        currentLine = ""; // Reset the input buffer
+      } else if (data === "\r") {
         // Process the input when Enter is pressed
-        processInput(currentLine).then(() =>{
+        processInput(currentLine).then(() => {
           terminal.write("$ ");
           currentLine = ""; // Reset the input buffer
-        } )
+        });
       } else if (data === "\x7f" || data === "\b") {
         // Handle backspace
         if (currentLine.length > 0) {
@@ -73,40 +77,51 @@ const XTermComponent: React.FC<XTermComponentProps> = ({
       // Process the input line (add your logic here)
       terminal.writeln("");
       console.log("User entered:", input);
-      switch (input.toLowerCase()) {
-        case "hi":
-          terminal.writeln("\x1b[33m⚙️ \x1b[3mWelcome to my console\x1b[23m\x1b[0m");
-          break;
-        case "man":
-          terminal.writeln("\x1b[33m⚙️ \x1b[3mWelcome to my console\x1b[23m\x1b[0m");
+      switch (input.toLowerCase().trim()) {
+        case "man resume":
+          helpMessage(terminal);
           break;
         case "help":
-          terminal.writeln("\x1b[33m⚙️ \x1b[3mWelcome to my console\x1b[23m\x1b[0m");
+          helpMessage(terminal);
           break;
         case "pdf":
-          terminal.writeln(
-            "\x1b[33m⚙️ \x1b[3m Download the resumee by clicking on the following link:\x1b[23m\x1b[0m"
-          );
+          helpMessage(terminal);
           break;
         case "welcome":
           welcomeMessage(terminal);
           break;
-        case "show":
-          onCustomFunction(true);
+        case "employment":
+          onCustomFunction(Show.Employment, true);
+          terminal.writeln(
+            "\x1b[33m⚙️ \x1b[3mShowing Employment history visually\x1b[23m\x1b[0m"
+          );
           break;
         case "hide":
-          onCustomFunction(false);
+          onCustomFunction(Show.All, false);
           break;
-        case "exit":
-          onCustomFunction(false);
+        case "education":
+          onCustomFunction(Show.Education, true);
+          terminal.writeln(
+            "\x1b[33m⚙️ \x1b[3mShowing Employment history visually\x1b[23m\x1b[0m"
+          );
           break;
         case "download":
           terminal.writeln(
-            "\x1b[33m⚙️ \x1b[3m Download the resumee by clicking on the following link:\x1b[23m\x1b[0m⚙️"
+            "\x1b[33m⚙️ \x1b[3mDownload the resume by clicking on the following link: \x1b]8;;https://drive.google.com/file/d/1bjqtvsl-OJMlZPKiiyvJxekK5HjLRip1/view?usp=sharing\x07Link to Google Drive\x1b]8;;\x07 or https://drive.google.com/file/d/1bjqtvsl-OJMlZPKiiyvJxekK5HjLRip1/view?usp=sharing\x1b[23m\x1b[0m"
           );
           break;
+        case "exit":
+          terminal.writeln(
+            "\x1b[33m⚙️ \x1b[3mExiting this site and jumping to my blog.\x1b[23m\x1b[0m"
+          );
+          window.location.href = "https://medium.com/@alexanderknips";
+          break;
         default:
-          await communicateWithAi(input);
+          if (input.length > 3) await communicateWithAi(input);
+          else
+            terminal.writeln(
+              "\x1b[33m⚙️ \x1b[3mInput too short for AI to answer\x1b[23m\x1b[0m"
+            );
           break;
       }
     }
@@ -114,6 +129,59 @@ const XTermComponent: React.FC<XTermComponentProps> = ({
     function welcomeMessage(terminal: Terminal) {
       terminal.writeln(
         "\x1b[33m⚙️ \x1b[3mThis is a fake terminal. Please interact with it as if it was real terminal but also a chatbot. Use the Esc key to hide elements. Use man or help to get more help.\x1b[23m\x1b[0m"
+      );
+    }
+
+    function helpMessage(terminal: Terminal) {
+      terminal.writeln("\x1b[3;32mAlexander Knips' resume\x1b[23m\x1b[0m");
+      terminal.writeln("");
+      terminal.writeln("\x1b[3;32mDESCRIPTION\x1b[23m\x1b[0m");
+      terminal.writeln(
+        "    \x1b[3;32mThis is not a real terminal but some simple commands work.\x1b[23m\x1b[0m"
+      );
+      terminal.writeln(
+        "    \x1b[1;31meducation\x1b[0m\x1b[3;32m    Show the education history visually"
+      );
+      terminal.writeln(
+        "    \x1b[1;31memployment\x1b[0m\x1b[3;32m   Show the employment history visually"
+      );
+      terminal.writeln(
+        "    \x1b[1;31mdownload\x1b[0m\x1b[3;32m     Show the employment history visually"
+      );
+      terminal.writeln(
+        "    \x1b[1;31mhelp\x1b[0m\x1b[3;32m         Bring this help page up again"
+      );
+      terminal.writeln(
+        "    \x1b[1;31mman resume\x1b[0m\x1b[3;32m   Bring this help page up again"
+      );
+      terminal.writeln(
+        "    \x1b[1;31mexit\x1b[0m\x1b[3;32m         Exit this terminal"
+      );
+
+      terminal.writeln("");
+      terminal.writeln(
+        "    \x1b[3;32mAll other commands longer than 3 characters will be answered \x1b[23m\x1b[0m"
+      );
+      terminal.writeln(
+        "    \x1b[3;32mby a custom GPT-powered assistant\x1b[23m\x1b[0m"
+      );
+      terminal.writeln(
+        "    \x1b[3;32mthat is trained on Alexander Knips' resume data.\x1b[23m\x1b[0m"
+      );
+      terminal.writeln("");
+      terminal.writeln("    \x1b[3;32mTry questions such as:\x1b[23m\x1b[0m");
+      terminal.writeln("");
+      terminal.writeln(
+        "    \x1b[1;31mTell me about Alexander's experience in Software Engineering.'\x1b[23m\x1b[0m"
+      );
+      terminal.writeln(
+        "    \x1b[1;31mWhat was Alexander's last position?'\x1b[0m.\x1b[23m\x1b[0m"
+      );
+      terminal.writeln(
+        "    \x1b[1;31mWhat is Alexander's highest education?\x1b[0m'\x1b[23m\x1b[0m"
+      );
+      terminal.writeln(
+        "    \x1b[1;31mWhat are Alex' qualifications as a lead engineer?\x1b[0m'.\x1b[23m\x1b[0m"
       );
     }
 
@@ -125,13 +193,21 @@ const XTermComponent: React.FC<XTermComponentProps> = ({
         body: JSON.stringify(data),
       });
       onProgressChanged(true);
-      const res = await resP;
-      onProgressChanged(false);
-      const jsonRes = await res.json();
-      console.log(JSON.stringify(jsonRes));
-      const answer = jsonRes.message;
-      terminal.writeln("\r\n\x1b[32m🤖 \x1b[3m" + answer + "\x1b[23m\x1b[0m");
-      console.log("Assistant responds:", answer);
+      try {
+        const res = await resP;
+        onProgressChanged(false);
+        const jsonRes = await res.json();
+        console.log(JSON.stringify(jsonRes));
+        const answer = jsonRes.message;
+
+        terminal.writeln("\x1b[32m🤖 \x1b[3m" + answer + "\x1b[23m\x1b[0m");
+        terminal.writeln("");
+        console.log("Assistant responds:", answer);
+      } catch {
+        terminal.writeln(
+          "\x1b[32m🤖 \x1b[3m Failed to answer this question. Try to ask differently.\x1b[23m\x1b[0m"
+        );
+      }
     }
 
     if (terminalRef.current) {
@@ -156,18 +232,6 @@ const XTermComponent: React.FC<XTermComponentProps> = ({
     }
 
     terminal.onData(handleInput);
-    terminal.onKey((e) => {
-      const { key, domEvent } = e;
-
-      // Check if Esc is pressed
-      if (domEvent.key === "Escape") {
-        onCustomFunction(false);
-      }
-
-      // Check if Ctrl+C is pressed
-      if (domEvent.ctrlKey && key === "c") {
-      }
-    });
 
     welcomeMessage(terminal);
     terminal.write("$ ");
@@ -177,75 +241,7 @@ const XTermComponent: React.FC<XTermComponentProps> = ({
     };
   }, []);
 
-  return (
-    <div className="h-full w-full" ref={terminalRef}>
-      <audio
-        ref={audioRef}
-        controls
-        style={{
-          position: "absolute",
-          width: "1px",
-          height: "1px",
-          margin: "-1px",
-          padding: "0",
-          overflow: "hidden",
-          clip: "rect(0, 0, 0, 0)",
-          border: "0",
-        }}
-      />
-    </div>
-  );
+  return <div className="h-full w-full" ref={terminalRef} />;
 };
 
 export default XTermComponent;
-
-// interface VoiceSettings {
-//   similarity_boost: number;
-//   stability: number;
-//   use_speaker_boost: boolean;
-// }
-
-// interface RequestData {
-//   model_id: string;
-//   text: string;
-//   voice_settings: VoiceSettings;
-// }
-
-// const loadAudio = async (options: any) => {
-//   try {
-//     const response = await fetch(
-//       "https://api.elevenlabs.io/v1/text-to-speech/ePQGCqByrc8Krl24cTQf",
-//       options
-//     );
-//     const audioBlob = await response.blob();
-//     const audioUrl = URL.createObjectURL(audioBlob);
-//     // TypeScript now knows audioRef.current is an HTMLAudioElement
-//     if (audioRef.current) {
-//       audioRef.current.src = audioUrl;
-//       audioRef.current.play();
-//     }
-//   } catch (error) {
-//     console.error("Error loading audio:", error);
-//   }
-// };
-
-// const requestData: RequestData = {
-//   model_id: "eleven_turbo_v2",
-//   text: answer,
-//   voice_settings: {
-//     similarity_boost: 0.5,
-//     stability: 0.5,
-//     use_speaker_boost: true,
-//   },
-// };
-// const jsonBody = JSON.stringify(requestData);
-// const options = {
-//   method: "POST",
-//   headers: {
-//     "Content-Type": "application/json",
-//     "xi-api-key": "2ff5de2f5ba4ba7b1f9b51d1259a67a0",
-//     Accept: "audio/mpeg",
-//   },
-//   body: jsonBody,
-// };
-// loadAudio(options);

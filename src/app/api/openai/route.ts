@@ -47,8 +47,8 @@ export const POST = async (request: NextRequest) => {
     // Now, you might need to poll for messages
     // This is a simplified example; you'll need to add actual polling logic
     let completed = false;
-
-    while (!completed) {
+    let failed = false;
+    while (!completed && !failed) {
       let runResponse = await openai.beta.threads.runs.retrieve(
         thread.id,
         run.id
@@ -56,20 +56,34 @@ export const POST = async (request: NextRequest) => {
       console.log(runResponse.status);
       // messages = response.; // or however the messages are structured in the response
       completed = runResponse.status == "completed"; // Check if the run is completed
+      failed =
+        runResponse.status == "failed" ||
+        runResponse.status == "cancelled" ||
+        runResponse.status == "cancelling" ||
+        runResponse.status == "expired" ||
+        runResponse.status == "requires_action";
       // You might want to add a delay here to avoid hitting the API too frequently
       await delay(1000);
     }
-
-    const messages = await openai.beta.threads.messages.list(thread.id);
-    const answers = messages.data.filter((x) => x.role == "assistant");
-    console.log(JSON.stringify(messages));
-    const answerString = answers
-      .map((x) =>
-        x.content.map((y) => (y.type == "text" ? y.text.value : "")).join("\n")
-      )
-      .join("\n")
-      .replace(/【.*?】/g, "");
-    return NextResponse.json({ message: answerString }, { status: 200 });
+    if (completed) {
+      const messages = await openai.beta.threads.messages.list(thread.id);
+      const answers = messages.data.filter((x) => x.role == "assistant");
+      console.log(JSON.stringify(messages));
+      const answerString = answers
+        .map((x) =>
+          x.content
+            .map((y) => (y.type == "text" ? y.text.value : ""))
+            .join("\n")
+        )
+        .join("\n")
+        .replace(/【.*?】/g, "");
+      return NextResponse.json({ message: answerString }, { status: 200 });
+    } else {
+      return NextResponse.json(
+        { message: "AI failed to answer" },
+        { status: 400 }
+      );
+    }
   } catch (error) {
     // Handle errors and send an error response
     return NextResponse.json(
