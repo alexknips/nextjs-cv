@@ -66,7 +66,7 @@ graph LR
     style 2 fill:#08427b,stroke:#052e56,color:#ffffff
 
     subgraph 4 [CV Software System]
-      style 4 fill:#000000,stroke:#4a7537,color:#4a7537
+      style 4 fill:#000000,stroke:#80c561,color:#80c561
 
       5["<div style='font-weight: bold'>NextJS Client</div><div style='font-size: 70%; margin-top: 0px'>[Container: Allows the user to ask questions about the particular resume in question and display pre-defined employment and education histories.]</div><div style='font-size: 80%; margin-top:10px'>Typescript, NextJS</div>"]
       style 5 fill:#dddddd,stroke:#9a9a9a,color:#000000
