@@ -10,6 +10,14 @@ This is an interactive terminal based CV built with
 
 # 3. Architecture
 
+```mermaid
+  graph TD;
+      A-->B;
+      A-->C;
+      B-->D;
+      C-->D;
+```
+
 # 4. How to Install and Run the Project
 
 ## Running the server locally
