@@ -78,6 +78,7 @@ graph LR
 
 ```mermaid
 C4Context
+title Component diagram for Internet Banking System - API Application
 
 Person(User, "User", $descr="A user of my software system.", $tags="", $link="")
 System(OpenAIsystem, "OpenAI system", $descr="The OpenAI System that includes their API.", $tags="", $link="")
