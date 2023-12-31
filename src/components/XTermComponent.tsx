@@ -134,7 +134,7 @@ const XTermComponent: React.FC<XTermComponentProps> = ({
 
     function welcomeMessage(terminal: Terminal) {
       terminal.writeln(
-        "\x1b[33m⚙️ \x1b[3mThis is a fake terminal. Please interact with it as if it was real terminal but also a chatbot. Use the Esc key to hide elements. Use man or help to get more help.\x1b[23m\x1b[0m"
+        "\x1b[33m⚙️ \x1b[3mThis is a fake terminal. Please interact with it as if it was real terminal but also a chatbot. Use the \x1b[1;32Esc\x1b[0m\x1b[3;33m key to hide elements. Use \x1b[1;31mhelp\x1b[0m\x1b[3;33m to get more help. The other two important commands are \x1b[1;31meducation\x1b[0m\x1b[3;33m and \x1b[1;31memployment\x1b[0m\x1b[3;33m. Thank you so much.\x1b[23m\x1b[0m"
       );
     }
 
