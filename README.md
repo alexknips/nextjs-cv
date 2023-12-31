@@ -15,7 +15,7 @@ The following system context diagram focusses on the single software system in q
 
 ```mermaid
 graph TB
-  linkStyle default fill:#aaaaaa
+  linkStyle default fill:#000000
 
   subgraph diagram ["CV Software System - System Context"]
     style diagram fill:#aaaaaa,stroke:#ffffff
