@@ -15,10 +15,10 @@ The following system context diagram focusses on the single software system in q
 
 ```mermaid
 graph TB
-  linkStyle default fill:#ffffff
+  linkStyle default fill:#aaaaaa
 
   subgraph diagram ["CV Software System - System Context"]
-    style diagram fill:#ffffff,stroke:#ffffff
+    style diagram fill:#aaaaaa,stroke:#ffffff
 
     2["<div style='font-weight: bold'>User</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>A user of my software system.</div>"]
     style 2 fill:#08427b,stroke:#052e56,color:#ffffff
@@ -36,10 +36,10 @@ The OpenAI system and context is described as the following
 
 ```mermaid
 graph TB
-  linkStyle default fill:#eeeeee
+  linkStyle default fill:#ffffff
 
   subgraph diagram ["OpenAI system - System Context"]
-    style diagram fill:#eeeeee,stroke:#ffffff
+    style diagram fill:#ffffff,stroke:#ffffff
 
     1["<div style='font-weight: bold'>Admin</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>The admin of the GPT<br />assistant.</div>"]
     style 1 fill:#08427b,stroke:#052e56,color:#ffffff
