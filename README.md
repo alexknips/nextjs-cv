@@ -13,6 +13,7 @@ I believe that the (C4 Model)[https://c4model.com/] currently is the best way to
 
 ```mermaid
 C4Context
+
     title System Context diagram for Terminal AI Resume 
     Person(admin, "Administrator")
 
