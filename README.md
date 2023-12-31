@@ -78,6 +78,8 @@ graph LR
     2-. "<div>Uses [Web]</div><div style='font-size: 70%'></div>" .->5
   end
 ```
+This is so simple and standard in NextJS that it does not warrant any further diagrams. The NextJS application has a single module and code diagrams are not further required. No external state is persisted.
+
 
 # 4. How to Install and Run the Project
 
