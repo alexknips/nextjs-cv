@@ -14,9 +14,17 @@ export interface OpenAiRequestData {
   question: string;
 }
 
+interface Datastore {
+  threadId: undefined | string;
+}
+
 function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
+
+const assistantId = "asst_HPuMBr1iPksfctoFk0jFQF1z";
+
+let dataStore: Datastore = { threadId: undefined };
 
 export const GET = async () => {
   const openai = new OpenAI();
@@ -27,18 +35,29 @@ export const GET = async () => {
   );
 };
 
-const assistantId = "asst_HPuMBr1iPksfctoFk0jFQF1z";
-export const POST = async (request: NextRequest) => {
+export const POST = async (req: NextRequest) => {
   try {
-    const data: OpenAiRequestData = await request.json();
+    const data: OpenAiRequestData = await req.json();
     const openai = new OpenAI();
-    const thread = await openai.beta.threads.create();
-    await openai.beta.threads.messages.create(thread.id, {
+
+    const threadId = await (async () => {
+      if (dataStore.threadId === undefined) {
+        console.log("Creating new thread");
+        const thread = await openai.beta.threads.create();
+        dataStore.threadId = thread.id;
+        return thread.id;
+      } else {
+        console.log("Re-using old thread");
+        return dataStore.threadId;
+      }
+    })();
+
+    await openai.beta.threads.messages.create(threadId, {
       role: "user",
       content: data.question,
     });
 
-    const run = await openai.beta.threads.runs.create(thread.id, {
+    const run = await openai.beta.threads.runs.create(threadId, {
       assistant_id: assistantId,
       //   instructions: data.intructions,
     });
@@ -50,7 +69,7 @@ export const POST = async (request: NextRequest) => {
     let failed = false;
     while (!completed && !failed) {
       let runResponse = await openai.beta.threads.runs.retrieve(
-        thread.id,
+      threadId,
         run.id
       );
       console.log(runResponse.status);
@@ -66,7 +85,7 @@ export const POST = async (request: NextRequest) => {
       await delay(1000);
     }
     if (completed) {
-      const messages = await openai.beta.threads.messages.list(thread.id);
+      const messages = await openai.beta.threads.messages.list(threadId);
       const answers = messages.data.filter((x) => x.role == "assistant");
       console.log(JSON.stringify(messages));
       const answerString = answers
@@ -92,11 +111,3 @@ export const POST = async (request: NextRequest) => {
     );
   }
 };
-
-// const openai = new OpenAI();
-// const completion = await openai.chat.completions.create({
-//   messages: [{ role: "system", content: "You are a helpful assistant." }],
-//   model: "gpt-3.5-turbo",
-// });
-// console.log(JSON.stringify(completion));
-// console.log(completion.choices[0].message);
