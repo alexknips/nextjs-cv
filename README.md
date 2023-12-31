@@ -29,7 +29,7 @@ graph TB
     style 4 fill:#1168bd,stroke:#0b4884,color:#ffffff
 
     1-. "<div>Configures assistant</div><div style='font-size: 70%'></div>" .->3
-    4-. "<div>Interacts through OpenAI API<br />[HTTPS]</div><div style='font-size: 70%'></div>" .->3
+    4-. "<div>Interacts through OpenAI API<br />[HTTPS]</div><div style='font-size: 100%'></div>" .->3
   end
 ```
 
@@ -48,7 +48,7 @@ graph TB
     style 4 fill:#1168bd,stroke:#0b4884,color:#ffffff
 
     2-. "<div>Uses [Web]</div><div style='font-size: 70%'></div>" .->4
-    4-. "<div>Interacts through OpenAI API<br />[HTTPS]</div><div style='font-size: 70%'></div>" .->3
+    4-. "<div>Interacts through OpenAI API<br />[HTTPS]</div><div style='font-size: 120%'></div>" .->3
   end
 ```
 
@@ -71,7 +71,7 @@ graph LR
       style 6 fill:#dddddd,stroke:#3e3e3e,color:#000000
     end
 
-    5-. "<div>REST [HTTPS]</div><div style='font-size: 170%;'></div>" .->6
+    5-. "<div>REST [HTTPS]</div><div style='font-size: 70%;'></div>" .->6
     2-. "<div>Uses [Web]</div><div style='font-size: 70%'></div>" .->5
   end
 ```
