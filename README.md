@@ -80,6 +80,7 @@ graph LR
 ```
 This is so simple and standard in NextJS that it does not warrant any further diagrams. The NextJS application has a single module and code diagrams are not further required. No external state is persisted.
 
+Notes: These diagrams were originally created with [Structurizr](https://structurizr.com/dsl) and then exported to Mermaid. 
 
 # 4. How to Install and Run the Project
 
