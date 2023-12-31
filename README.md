@@ -71,7 +71,7 @@ graph LR
       style 6 fill:#dddddd,stroke:#3e3e3e,color:#000000
     end
 
-    5-. "<div>REST [HTTPS]</div><div style='font-size: 70%;font-weight: bold'></div>" .->6
+    5-. "<div>REST [HTTPS]</div><div style='font-size: 170%;'></div>" .->6
     2-. "<div>Uses [Web]</div><div style='font-size: 70%'></div>" .->5
   end
 ```
