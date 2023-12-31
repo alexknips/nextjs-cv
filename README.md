@@ -11,24 +11,69 @@ This is an interactive terminal based CV built with
 # 3. Architecture
 I believe that the (C4 Model)[https://c4model.com/] currently is the best way to describe architecture through diagrams. Hence, it will be used here as appropriate. 
 
+The following system context diagram focusses on the single software system in question, the CV resume system. 
+
+
 ```mermaid
-C4Context
+graph TB
+  linkStyle default fill:#ffffff
 
-    title System Context diagram for Terminal AI Resume 
-    Person(admin, "Administrator")
+  subgraph diagram ["OpenAI system - System Context"]
+    style diagram fill:#ffffff,stroke:#ffffff
 
-    System_Boundary(sys, "CV System") {
-        Container(web_app, "Web Application", "Typescript, NextJS", "Allows the user to ask questions about the particular resume in question <br> and display pre-defined employment and education histories.")
-        Person(user, "User")
-        Rel(user, web_app, "Interacts", "Web")
-    }
-    System(openai, "Open AI")
+    1["<div style='font-weight: bold'>Admin</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>The admin of the GPT<br />assistant.</div>"]
+    style 1 fill:#08427b,stroke:#052e56,color:#ffffff
+    3["<div style='font-weight: bold'>OpenAI system</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>The OpenAI System that<br />includes their API.</div>"]
+    style 3 fill:#1168bd,stroke:#0b4884,color:#ffffff
+    4["<div style='font-weight: bold'>CV Software System</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Interactive CV software<br />system.</div>"]
+    style 4 fill:#1168bd,stroke:#0b4884,color:#ffffff
 
-    Rel(admin, openai, "Configures the GPT assistant", "Web")
-    Rel(web_app, openai, "Interacts with the CV Web page", "Web")
-    UpdateRelStyle(admin, openai, $offsetY="20")
-    UpdateRelStyle(web_app, openai, $offsetY="-20")
-    UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="1")
+    1-. "<div>Configures assistant</div><div style='font-size: 70%'></div>" .->3
+    4-. "<div>Interacts through OpenAI API<br />[HTTPS]</div><div style='font-size: 70%'></div>" .->3
+  end
+```
+
+```mermaid
+graph TB
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["CV Software System - System Context"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    2["<div style='font-weight: bold'>User</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>A user of my software system.</div>"]
+    style 2 fill:#08427b,stroke:#052e56,color:#ffffff
+    3["<div style='font-weight: bold'>OpenAI system</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>The OpenAI System that<br />includes their API.</div>"]
+    style 3 fill:#1168bd,stroke:#0b4884,color:#ffffff
+    4["<div style='font-weight: bold'>CV Software System</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Interactive CV software<br />system.</div>"]
+    style 4 fill:#1168bd,stroke:#0b4884,color:#ffffff
+
+    2-. "<div>Uses [Web]</div><div style='font-size: 70%'></div>" .->4
+    4-. "<div>Interacts through OpenAI API<br />[HTTPS]</div><div style='font-size: 70%'></div>" .->3
+  end
+```
+
+```mermaid
+graph LR
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["CV Software System - Containers"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    2["<div style='font-weight: bold'>User</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>A user of my software system.</div>"]
+    style 2 fill:#08427b,stroke:#052e56,color:#ffffff
+
+    subgraph 4 [CV Software System]
+      style 4 fill:#ffffff,stroke:#0b4884,color:#0b4884
+
+      5["<div style='font-weight: bold'>NextJS Client</div><div style='font-size: 70%; margin-top: 0px'>[Container: Allows the user to ask questions about the particular resume in question and display pre-defined employment and education histories.]</div><div style='font-size: 80%; margin-top:10px'>Typescript, NextJS</div>"]
+      style 5 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      6["<div style='font-weight: bold'>NextJS Server</div><div style='font-size: 70%; margin-top: 0px'>[Container: Keeps the OpenAI thread in memory and interacts with the assistant API.]</div><div style='font-size: 80%; margin-top:10px'>Typescript, NextJS</div>"]
+      style 6 fill:#dddddd,stroke:#9a9a9a,color:#000000
+    end
+
+    5-. "<div>REST [HTTPS]</div><div style='font-size: 70%'></div>" .->6
+    2-. "<div>Uses [Web]</div><div style='font-size: 70%'></div>" .->5
+  end
 ```
 
 # 4. How to Install and Run the Project
