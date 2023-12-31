@@ -66,9 +66,9 @@ graph LR
       style 4 fill:#ffffff,stroke:#0b4884,color:#0b4884
 
       5["<div style='font-weight: bold'>NextJS Client</div><div style='font-size: 70%; margin-top: 0px'>[Container: Allows the user to ask questions about the particular resume in question and display pre-defined employment and education histories.]</div><div style='font-size: 80%; margin-top:10px'>Typescript, NextJS</div>"]
-      style 5 fill:#eeeeee,stroke:#9a9a9a,color:#000000
+      style 5 fill:#dddddd,stroke:#3e3e3e,color:#000000
       6["<div style='font-weight: bold'>NextJS Server</div><div style='font-size: 70%; margin-top: 0px'>[Container: Keeps the OpenAI thread in memory and interacts with the assistant API.]</div><div style='font-size: 80%; margin-top:10px'>Typescript, NextJS</div>"]
-      style 6 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      style 6 fill:#dddddd,stroke:#3e3e3e,color:#000000
     end
 
     5-. "<div>REST [HTTPS]</div><div style='font-size: 70%'></div>" .->6
