@@ -15,10 +15,10 @@ The following system context diagram focusses on the single software system in q
 
 ```mermaid
 graph TB
-  linkStyle default fill:#000000
+  linkStyle default fill:#ffffff
 
   subgraph diagram ["CV Software System - System Context"]
-    style diagram fill:#aaaaaa,stroke:#ffffff
+    style diagram fill:#000000,stroke:#ffffff
 
     2["<div style='font-weight: bold'>User</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>A user of my software system.</div>"]
     style 2 fill:#08427b,stroke:#052e56,color:#ffffff
