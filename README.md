@@ -39,7 +39,7 @@ graph TB
   linkStyle default fill:#ffffff
 
   subgraph diagram ["OpenAI system - System Context"]
-    style diagram fill:#ffffff,stroke:#ffffff
+    style diagram fill:#000000,stroke:#ffffff
 
     1["<div style='font-weight: bold'>Admin</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>The admin of the GPT<br />assistant.</div>"]
     style 1 fill:#08427b,stroke:#052e56,color:#ffffff
@@ -60,13 +60,13 @@ graph LR
   linkStyle default fill:#ffffff
 
   subgraph diagram ["CV Software System - Containers"]
-    style diagram fill:#ffffff,stroke:#ffffff
+    style diagram fill:#000000,stroke:#ffffff
 
     2["<div style='font-weight: bold'>User</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>A user of my software system.</div>"]
     style 2 fill:#08427b,stroke:#052e56,color:#ffffff
 
     subgraph 4 [CV Software System]
-      style 4 fill:#ffffff,stroke:#4a7537,color:#4a7537
+      style 4 fill:#000000,stroke:#4a7537,color:#4a7537
 
       5["<div style='font-weight: bold'>NextJS Client</div><div style='font-size: 70%; margin-top: 0px'>[Container: Allows the user to ask questions about the particular resume in question and display pre-defined employment and education histories.]</div><div style='font-size: 80%; margin-top:10px'>Typescript, NextJS</div>"]
       style 5 fill:#dddddd,stroke:#9a9a9a,color:#000000
