@@ -76,6 +76,19 @@ graph LR
   end
 ```
 
+```mermaid
+C4Context
+
+Person(User, "User", $descr="A user of my software system.", $tags="", $link="")
+System(OpenAIsystem, "OpenAI system", $descr="The OpenAI System that includes their API.", $tags="", $link="")
+System(CVSoftwareSystem, "CV Software System", $descr="Interactive CV software system.", $tags="", $link="")
+
+Rel(User, CVSoftwareSystem, "Uses [Web]", $techn="", $tags="", $link="")
+Rel(CVSoftwareSystem, OpenAIsystem, "Interacts through OpenAI API [HTTPS]", $techn="", $tags="", $link="")
+
+SHOW_LEGEND(true)
+```
+
 # 4. How to Install and Run the Project
 
 ## Running the server locally
