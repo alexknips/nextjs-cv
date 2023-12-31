@@ -9,13 +9,25 @@ This is an interactive terminal based CV built with
 - Deployed to [Vercel](https://vercel.com)
 
 # 3. Architecture
+I believe that the (C4 Model)[https://c4model.com/] currently is the best way to describe architecture through diagrams. Hence, it will be used here as appropriate. 
 
 ```mermaid
-  graph TD;
-      A-->B;
-      A-->C;
-      B-->D;
-      C-->D;
+C4Context
+    title System Context diagram for Terminal AI Resume 
+    Person(admin, "Administrator")
+
+    System_Boundary(sys, "CV System") {
+        Container(web_app, "Web Application", "Typescript, NextJS", "Allows the user to ask questions about the particular resume in question <br> and display pre-defined employment and education histories.")
+        Person(user, "User")
+        Rel(user, web_app, "Interacts", "Web")
+    }
+    System(openai, "Open AI")
+
+    Rel(admin, openai, "Configures the GPT assistant", "Web")
+    Rel(web_app, openai, "Interacts with the CV Web page", "Web")
+    UpdateRelStyle(admin, openai, $offsetY="20")
+    UpdateRelStyle(web_app, openai, $offsetY="-20")
+    UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="1")
 ```
 
 # 4. How to Install and Run the Project
