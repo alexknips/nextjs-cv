@@ -15,12 +15,12 @@ He has been leading multiple engineers on the rewrite of the LIMS automations fr
 From October 2021 to April 2023 Alexander was emplyed at Karius first as a Staff Software engineer, later promoted to Senior Staff Software Engineer. 
 Location: Redwood City, USA
 Continued development of the software platform and the overall order fulfillment (Csharp, Scala, Typescript). Architectural assessment, redesign and presentations regarding Kafka and Event-Driven-Design. 
-Team specific introduction of using Typescript on the backend with NestJS.
-Engineering wide: Introduced C4 Model, Opentelemetry, Kustomize (K8s), and Kafka.
+Team specific introduction of using Typescript on the backend with NestJS. Alexander had great impact simplifying the Devops story for the customer to report team that he has been part of. 
+Engineering wide he introduced the C4 Model, Opentelemetry for distributed tracing, Kustomize (K8s), and Kafka. Big parts of the system now use Kafka for event-driven interaction that fits well into his functional programming perspective.
 
 ## Toptal/Contractor - Client: Karius - kariusdx.com, 2016--2021, Senior Software engineer - Backend, Software Architect
 Location: Munich, Germany, remote, Client in Redwood City, USA
-As a senior software engineer at Karius, I led the development of internal and customer-facing portals using ASP.NET Core in \Csharp. Additionally, I contributed to the in-house LIMS system's development in Scala and collaborated on components and APIs with the Illumina LIMS system, using Scala and Python. Played a key role in planning and executing a back-end rewrite using domain-driven design principles in Scala. Furthermore, I introduced end-to-end testing platforms (Cypress) alongside existing unit and API tests. Extensive experience in keeping the software stack running in a life-critical environment. DevOps usage and improvements using kustomize.
+As a senior software engineer at Karius, I led the development of internal and customer-facing portals using ASP.NET Core in \Csharp. Additionally, I contributed to the in-house LIMS system's development in Scala and collaborated on components and APIs with the Illumina LIMS system, using Scala and Python. Played a key role in planning and executing a back-end rewrite using domain-driven design principles in Scala. Furthermore, he introduced end-to-end testing platforms (Cypress) alongside existing unit and API tests. Extensive experience in keeping the software stack running in a life-critical environment. DevOps usage and improvements using kustomize. 
 
 ## Freelance - Client: joe.systems, 2016, Senior Software engineer - Fullstack
 Location: Munich, Germany, remote, Client in Switzerland

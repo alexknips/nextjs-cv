@@ -41,3 +41,10 @@ Biophysical Journal 110.3 (Feb. 2016) 63a–64a. Elsevier BV, 2016
 ## Influence of a cis,syn-cyclobutane pyrimidine dimer damage on DNA conformation studied by molecular dynamics simulations.
 Knips, Alexander and Martin Zacharias
 Biopolymers 103.4 (Nov. 2014) pp. 215–222. 2014
+
+# Certificates
+
+## AI certificates
+Alex also obtained the certificates
+- In December 2023: DeepLearning.AI - Neural Networks and Deep Learning
+- In December 2023: DeepLearning.AI - Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization
