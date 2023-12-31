@@ -81,7 +81,7 @@ const TerminalPage: React.FC = () => {
           {showEmployment && (
             <div id="overlay" onClick={handleOutsideClick}>
               <div id="overlay-content" onClick={handleOutsideClick}>
-                <Timeline events={employmentNewestFirst.reverse()} closeVisuals={function (): void {
+                <Timeline events={employmentNewestFirst} closeVisuals={function (): void {
                  showOrHideVisuals(Show.All, false);
                 } } />
               </div>
@@ -90,7 +90,7 @@ const TerminalPage: React.FC = () => {
           {showEducation && (
             <div id="overlay" onClick={handleOutsideClick}>
               <div id="overlay-content" onClick={handleOutsideClick}>
-                 <Timeline events={educationNewestFirst.reverse()} closeVisuals={function (): void {
+                 <Timeline events={educationNewestFirst} closeVisuals={function (): void {
                  showOrHideVisuals(Show.All, false);
                 } } />
               </div>
