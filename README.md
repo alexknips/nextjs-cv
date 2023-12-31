@@ -13,26 +13,6 @@ I believe that the (C4 Model)[https://c4model.com/] currently is the best way to
 
 The following system context diagram focusses on the single software system in question, the CV resume system. 
 
-
-```mermaid
-graph TB
-  linkStyle default fill:#ffffff
-
-  subgraph diagram ["OpenAI system - System Context"]
-    style diagram fill:#ffffff,stroke:#ffffff
-
-    1["<div style='font-weight: bold'>Admin</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>The admin of the GPT<br />assistant.</div>"]
-    style 1 fill:#08427b,stroke:#052e56,color:#ffffff
-    3["<div style='font-weight: bold'>OpenAI system</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 100%; margin-top:10px'>The OpenAI System that<br />includes their API.</div>"]
-    style 3 fill:#1168bd,stroke:#0b4884,color:#ffffff
-    4["<div style='font-weight: bold'>CV Software System</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Interactive CV software<br />system.</div>"]
-    style 4 fill:#1168bd,stroke:#0b4884,color:#ffffff
-
-    1-. "<div>Configures assistant</div><div style='font-size: 70%'></div>" .->3
-    4-. "<div>Interacts through OpenAI API<br />[HTTPS]</div><div style='font-size: 100%'></div>" .->3
-  end
-```
-
 ```mermaid
 graph TB
   linkStyle default fill:#ffffff
@@ -43,12 +23,33 @@ graph TB
     2["<div style='font-weight: bold'>User</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>A user of my software system.</div>"]
     style 2 fill:#08427b,stroke:#052e56,color:#ffffff
     3["<div style='font-weight: bold'>OpenAI system</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>The OpenAI System that<br />includes their API.</div>"]
-    style 3 fill:#1168bd,stroke:#0b4884,color:#ffffff
+    style 3 fill:#6aa84f,stroke:#4a7537,color:#000000
     4["<div style='font-weight: bold'>CV Software System</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Interactive CV software<br />system.</div>"]
-    style 4 fill:#1168bd,stroke:#0b4884,color:#ffffff
+    style 4 fill:#6aa84f,stroke:#4a7537,color:#000000
 
     2-. "<div>Uses [Web]</div><div style='font-size: 70%'></div>" .->4
-    4-. "<div>Interacts through OpenAI API<br />[HTTPS]</div><div style='font-size: 120%'></div>" .->3
+    4-. "<div>Interacts through OpenAI API<br />[HTTPS]</div><div style='font-size: 70%'></div>" .->3
+  end
+```
+
+The OpenAI system and its context is
+
+```mermaid
+graph TB
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["OpenAI system - System Context"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    1["<div style='font-weight: bold'>Admin</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>The admin of the GPT<br />assistant.</div>"]
+    style 1 fill:#08427b,stroke:#052e56,color:#ffffff
+    3["<div style='font-weight: bold'>OpenAI system</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>The OpenAI System that<br />includes their API.</div>"]
+    style 3 fill:#6aa84f,stroke:#4a7537,color:#000000
+    4["<div style='font-weight: bold'>CV Software System</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Interactive CV software<br />system.</div>"]
+    style 4 fill:#6aa84f,stroke:#4a7537,color:#000000
+
+    1-. "<div>Configures assistant</div><div style='font-size: 70%'></div>" .->3
+    4-. "<div>Interacts through OpenAI API<br />[HTTPS]</div><div style='font-size: 70%'></div>" .->3
   end
 ```
 
@@ -63,15 +64,15 @@ graph LR
     style 2 fill:#08427b,stroke:#052e56,color:#ffffff
 
     subgraph 4 [CV Software System]
-      style 4 fill:#ffffff,stroke:#0b4884,color:#0b4884
+      style 4 fill:#ffffff,stroke:#4a7537,color:#4a7537
 
       5["<div style='font-weight: bold'>NextJS Client</div><div style='font-size: 70%; margin-top: 0px'>[Container: Allows the user to ask questions about the particular resume in question and display pre-defined employment and education histories.]</div><div style='font-size: 80%; margin-top:10px'>Typescript, NextJS</div>"]
-      style 5 fill:#dddddd,stroke:#3e3e3e,color:#000000
+      style 5 fill:#dddddd,stroke:#9a9a9a,color:#000000
       6["<div style='font-weight: bold'>NextJS Server</div><div style='font-size: 70%; margin-top: 0px'>[Container: Keeps the OpenAI thread in memory and interacts with the assistant API.]</div><div style='font-size: 80%; margin-top:10px'>Typescript, NextJS</div>"]
-      style 6 fill:#dddddd,stroke:#3e3e3e,color:#000000
+      style 6 fill:#dddddd,stroke:#9a9a9a,color:#000000
     end
 
-    5-. "<div>REST [HTTPS]</div><div style='font-size: 70%;'></div>" .->6
+    5-. "<div>REST [HTTPS]</div><div style='font-size: 70%'></div>" .->6
     2-. "<div>Uses [Web]</div><div style='font-size: 70%'></div>" .->5
   end
 ```
