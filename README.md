@@ -32,7 +32,7 @@ graph TB
   end
 ```
 
-The OpenAI system and its context is
+The OpenAI system and context is described as the following
 
 ```mermaid
 graph TB
@@ -52,6 +52,8 @@ graph TB
     4-. "<div>Interacts through OpenAI API<br />[HTTPS]</div><div style='font-size: 70%'></div>" .->3
   end
 ```
+
+Within the CV system the different containers are described as
 
 ```mermaid
 graph LR
