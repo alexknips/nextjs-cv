@@ -3,7 +3,7 @@
 # 1. Project Description
 This is an interactive terminal based CV built with
 - Written in [Typescript](https://www.typescriptlang.org/)
-- [Nest JS](ttps://nextjs.org/
+- [Nest JS](https://nextjs.org/)
 - [OpenAI API](https://openai.com/product)
 - XtermJS [XtermJS](https://xtermjs.org/)
 - Deployed to [Vercel](https://vercel.com)
