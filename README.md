@@ -23,7 +23,7 @@ graph TB
 
     1["<div style='font-weight: bold'>Admin</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>The admin of the GPT<br />assistant.</div>"]
     style 1 fill:#08427b,stroke:#052e56,color:#ffffff
-    3["<div style='font-weight: bold'>OpenAI system</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>The OpenAI System that<br />includes their API.</div>"]
+    3["<div style='font-weight: bold'>OpenAI system</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 100%; margin-top:10px'>The OpenAI System that<br />includes their API.</div>"]
     style 3 fill:#1168bd,stroke:#0b4884,color:#ffffff
     4["<div style='font-weight: bold'>CV Software System</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Interactive CV software<br />system.</div>"]
     style 4 fill:#1168bd,stroke:#0b4884,color:#ffffff
@@ -66,7 +66,7 @@ graph LR
       style 4 fill:#ffffff,stroke:#0b4884,color:#0b4884
 
       5["<div style='font-weight: bold'>NextJS Client</div><div style='font-size: 70%; margin-top: 0px'>[Container: Allows the user to ask questions about the particular resume in question and display pre-defined employment and education histories.]</div><div style='font-size: 80%; margin-top:10px'>Typescript, NextJS</div>"]
-      style 5 fill:#dddddd,stroke:#9a9a9a,color:#000000
+      style 5 fill:#eeeeee,stroke:#9a9a9a,color:#000000
       6["<div style='font-weight: bold'>NextJS Server</div><div style='font-size: 70%; margin-top: 0px'>[Container: Keeps the OpenAI thread in memory and interacts with the assistant API.]</div><div style='font-size: 80%; margin-top:10px'>Typescript, NextJS</div>"]
       style 6 fill:#dddddd,stroke:#9a9a9a,color:#000000
     end
