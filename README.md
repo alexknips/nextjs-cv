@@ -102,7 +102,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 # 5. How to Use the Project
 
-Feel free to use this project according to the MIT license. Accredication not required but appreciated.
+Feel free to use this project according to the MIT license. Accredication not required but appreciated. 
+Right now the employment and education data returned visually is just objects in the folder https://github.com/alexknips/nextjs-cv/tree/main/src/app/data.
+This can be easily be improved upon to use a different data store.
 
 # 6. Credits
 
