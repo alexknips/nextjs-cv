@@ -1,14 +1,5 @@
-// src/api/myOpenApiRoute.ts
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
-
-type ResponseData = {
-  message: string;
-};
-
-type ResponseError = {
-  error: string;
-};
 
 export interface OpenAiRequestData {
   question: string;
@@ -59,7 +50,6 @@ export const POST = async (req: NextRequest) => {
 
     const run = await openai.beta.threads.runs.create(threadId, {
       assistant_id: assistantId,
-      //   instructions: data.intructions,
     });
     await delay(3000);
 

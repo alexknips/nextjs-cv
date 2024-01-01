@@ -8,6 +8,8 @@ This is an interactive terminal based CV built with
 - XtermJS [XtermJS](https://xtermjs.org/)
 - Deployed to [Vercel](https://vercel.com)
 
+I also wrote an article of how I wrote the code, it's available either on  (Hashnode)[https://hashnode.com/post/clqufyl0k000508jt5xcd83y2] or (Medium)[https://medium.com/@alexanderknips/my-interactive-resume-terminal-15fa5e32c4d2].
+
 # 3. Architecture
 I believe that the (C4 Model)[https://c4model.com/] currently is the best way to describe architecture through diagrams. Hence, it will be used here as appropriate. 
 
