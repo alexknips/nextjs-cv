@@ -110,12 +110,11 @@ const XTermComponent: React.FC<XTermComponentProps> = ({
             "\x1b[33m⚙️ \x1b[3mDownload the resume by clicking on the following link: \x1b]8;;https://drive.google.com/file/d/1bjqtvsl-OJMlZPKiiyvJxekK5HjLRip1/view?usp=sharing\x07Link to Google Drive\x1b]8;;\x07 or https://drive.google.com/file/d/1bjqtvsl-OJMlZPKiiyvJxekK5HjLRip1/view?usp=sharing\x1b[23m\x1b[0m"
           );
           break;
-
-          case "contact":
-            terminal.writeln(
-              "\x1b[33m⚙️ \x1b[3mYou can contact me directly through alex.knips@gmail.com or on my linkedin profile at https://www.linkedin.com/in/alexander-knips-45794240/\x1b[23m\x1b[0m"
-            );
-            break;
+        case "contact":
+          terminal.writeln(
+            "\x1b[33m⚙️ \x1b[3mYou can contact me directly through alex.knips@gmail.com or on my linkedin profile at https://www.linkedin.com/in/alexander-knips-45794240/\x1b[23m\x1b[0m"
+          );
+          break;
         case "exit":
           terminal.writeln(
             "\x1b[33m⚙️ \x1b[3mExiting this site and jumping to my blog.\x1b[23m\x1b[0m"
