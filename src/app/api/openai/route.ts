@@ -3,6 +3,7 @@ import OpenAI from "openai";
 
 export interface OpenAiRequestData {
   question: string;
+  userKey: string;
 }
 
 interface Datastore {
