@@ -196,7 +196,7 @@ const XTermComponent: React.FC<XTermComponentProps> = ({
     async function communicateWithAi(input: string) {
       const data = { question: input };
       // Make a request to your API route
-      const resP = fetch("https://nextcv-production.alexknips.xyz/api/openai", {
+      const resP = fetch("/api/openai", {
         method: "POST",
         body: JSON.stringify(data),
       });
